@@ -9,31 +9,31 @@ import java.util.Iterator;
  */
 public class FirstScript {
     public static void main(String[] args) {
-        // Создаем экземпляр WebDriver
+        // Create a new instance of the Firefox driver
         WebDriver driver = new FirefoxDriver();
-        // Открываем URL, используя драйвер
+        // And now use this to visit Bing
         driver.get("https://www.bing.com/");
-        // Находим элемент по атрибуту name
+        // Find the text input element by its name
         WebElement element = driver.findElement(By.name("q"));
-        // Вводим текст
+        // Enter something to search for
         element.sendKeys("automation");
-        // Отправляем форму
+        // Now submit the form
         element.submit();
-        // Выводим в консоль тайтл страницы
+        // Check the title of the page
         System.out.println("Page header is: " + driver.getTitle());
-        // Находим элементы по условию: заголов h2 > ссылка(тег <a>)
+        // Find the items on the condition: header h2 > link(<a>)
         List<WebElement> elements = driver.findElements(By.xpath("//h2/a"));
-        //Выводим в консоль количество найденных элементов
+        // Print the total number of elements
         System.out.println("Total headers are: " + elements.size());
-        //Создаем итератор
+        // Now using Iterator we will iterate all elements
         Iterator<WebElement> iter = elements.iterator();
-        // Печать списка заголовков всех отображаемых результатов поиска
+        // Print the headers
         while (iter.hasNext()){
             WebElement item = iter.next();
             String header = item.getText();
             System.out.println("Header is: " + header);
         }
-        //Закрываем браузер
+        // Close the browser
         driver.quit();
     }
 }
